@@ -2,7 +2,7 @@ import abc
 import random
 
 
-class change_damage:
+class Change_damage:
     def change_damage_for_warrior(weapon) -> int:
         crit = random.choice([0, 0, 0, 0, 0, 0, 0, 0, 1, 1])
         if crit:
@@ -22,9 +22,10 @@ class Player(abc.ABC):
         pass
 
 
-class Warrior(Player):
+class Warrior(Player, Change_damage):
     health = 1250
     def __init__(self, weapon: str) -> None:
         super().__init__()
         self.weapon = weapon.lower()
     
+    def attack(self):
