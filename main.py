@@ -1,71 +1,12 @@
-import abc
-import random
+from heroes import Create_hero
+from battle import battle
+from weapons import Sword, Spear, Bow, Crossbow, Stick, Book
 
 
-class Change_damage:
-    def change_damage_for_warrior(weapon: str) -> int:
-        crit = random.choice([0, 0, 0, 0, 0, 0, 0, 0, 1, 1])
-        if crit:
-            if weapon == 'sword':
-                return random.randint(75, 100)
-            elif weapon == 'spear':
-                return random.randint(90, 120)
-        else:
-            if weapon == 'sword':
-                return random.randint(60, 85)
-            elif weapon == 'spear':
-                return random.randint(80, 100)
-    
-    def change_damage_for_archer(weapon: str) -> int:
-        crit = random.choice([0, 0, 0, 0, 0, 0, 0, 0, 1, 1])
-        if crit:
-            if weapon == 'bow':
-                return random.randint(60, 80)
-            elif weapon == 'crossbow':
-                return random.randint(75, 100)
-        else:
-            if weapon == 'bow':
-                return random.randint(40, 65)
-            elif weapon == 'crossbow':
-                return random.randint(65, 80)
+if __name__ == '__main__':
+    hero_fabric = Create_hero()
 
+    hero1 = hero_fabric.create_warrior(name_hero='Вася', weapon=Sword("Армагидон"))
+    hero2 = hero_fabric.create_archer(name_hero='Иигарь', weapon=Bow("Snipebow"))
 
-class Player(abc.ABC):
-    def attack():
-        pass
-
-
-class Warrior(Player, Change_damage):
-    health = 1250
-
-    def __init__(self, name: str, weapon: str) -> None:
-        super().__init__()
-        self.name = name
-        self.weapon = weapon.lower()
-    
-    def attack(self) -> int:
-        return Change_damage.change_damage_for_warrior(weapon=self.weapon)
-
-
-class Archer(Player, Change_damage):
-    health = 1000
-
-    def __init__(self, name: str, weapon: str) -> None:
-        super().__init__()
-        self.name = name
-        self.weapon = weapon
-
-    def attack(self) -> int:
-        return Change_damage.change_damage_for_archer(weapon=self.weapon)
-    
-
-class Create_hero:
-    def create_hero(self, type_of_hero: str, name_hero: str, weapon: str):
-        if type_of_hero.lower() == 'warrior':
-            return Warrior(name=name_hero, weapon=weapon)
-        elif type_of_hero.lower() == 'archer':
-            return Warrior(name=name_hero, weapon=weapon)
-    
-
-def battle(hero1: Warrior | Archer, hero2: Warrior | Archer):
-    hero1.attack
+    battle(hero1=hero1, hero2= hero2)
