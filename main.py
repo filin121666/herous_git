@@ -1,3 +1,4 @@
+# Данный проект на ходится на моём github, вот ссылка на репозиторий https://github.com/filin121666/herous_git.git
 from heroes import Create_hero
 from battle import battle
 from weapons import Sword, Spear, Bow, Crossbow, Stick, Book
